@@ -13,7 +13,7 @@ npm install react-confetti-pro
 
 
 ## Implementation
-```basg
+```bash
 import { Confetti } from 'react-confetti';
 
 <Confetti
