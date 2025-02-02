@@ -38,8 +38,10 @@ const Confetti = ({ particleCount = 150, colors = ["#4CAF50", "#FFC107", "#FF572
                 size: Math.random() * 10 + 5, // Random size between 5 and 15
                 shape: ["circle", "square", "rectangle"][Math.floor(Math.random() * 3)], // Random shapes
                 rotation: Math.random() * 360, // Initial rotation
-                rotationSpeed: Math.random() * 10 - 5, // Faster rotation speed (-5 to 5)
+                rotationSpeed: Math.random() * 10 - 5, // Rotation speed (-5 to 5)
                 opacity: Math.random() * 0.8 + 0.2, // Random opacity
+                flipSpeed: Math.random() * 5 + 2, // Flip speed for the page effect
+                flip: 0, // Initial flip state
             };
         });
         const drawParticles = () => {
@@ -48,11 +50,15 @@ const Confetti = ({ particleCount = 150, colors = ["#4CAF50", "#FFC107", "#FF572
                 particle.x += particle.velocityX;
                 particle.y += particle.velocityY;
                 particle.velocityY += 0.1; // Gravity effect
-                particle.rotation += particle.rotationSpeed * 2; // Increase rotation increment for faster rotation
+                particle.rotation += particle.rotationSpeed; // Increment rotation
+                particle.flip += particle.flipSpeed; // Increment flip effect
                 ctx.save();
                 ctx.translate(particle.x, particle.y);
                 ctx.rotate((particle.rotation * Math.PI) / 180); // Apply rotation
                 ctx.globalAlpha = particle.opacity;
+                // Page flip effect: alternate scaling on x-axis
+                const flipFactor = Math.abs(Math.sin((particle.flip * Math.PI) / 180)) * 2 - 1;
+                ctx.scale(flipFactor, 1); // Flip along the x-axis for page flip
                 ctx.fillStyle = particle.color;
                 if (particle.shape === "circle") {
                     ctx.beginPath();
