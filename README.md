@@ -44,8 +44,8 @@ export default App;
 |---------------|--------|---------|-------------|
 | `particleCount` | number | `100`  | Number of confetti particles. |
 | `duration`      | number | `5000`  | Duration of the confetti effect in milliseconds. |
-| `direction`     | string | `'top'` | Direction of the confetti (`'top'`, `'bottom'`, `'left'`, `'right'`, `'center'`). |
+| `direction`     | string | `'center'` | Direction of the confetti (`'left'`, `'right'`, `'center'`). |
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the ISC License.
